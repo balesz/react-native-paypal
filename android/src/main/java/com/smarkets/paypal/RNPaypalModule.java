@@ -58,6 +58,8 @@ public class RNPaypalModule extends ReactContextBaseJavaModule implements Activi
         request.localeCode(options.getString("localeCode"));
     if (options.hasKey("shippingAddressRequired"))
         request.shippingAddressRequired(options.getBoolean("shippingAddressRequired"));
+    if (options.hasKey("landingPageType"))
+        request.landingPageType(options.getString("landingPageType"));
 
     if (options.hasKey("userAction") &&
         PayPalRequest.USER_ACTION_COMMIT.equals(options.getString("userAction")))

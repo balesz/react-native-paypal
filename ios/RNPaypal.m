@@ -57,6 +57,13 @@ RCT_EXPORT_METHOD(
             else if ([@"order" isEqualToString:intent])
                 request.intent = BTPayPalRequestIntentOrder;
         }
+        NSString* landingPageType = options[@"landingPageType"];
+        if (landingPageType) {
+            if ([@"billing" isEqualToString:intent])
+                request.landingPageType = BTPayPalRequestLandingPageTypeBilling;
+            else if ([@"login" isEqualToString:intent])
+                request.landingPageType = BTPayPalRequestLandingPageTypeLogin;
+        }
         
         [payPalDriver requestOneTimePayment:request completion:^(BTPayPalAccountNonce * _Nullable tokenizedPayPalAccount, NSError * _Nullable error) {
             if (tokenizedPayPalAccount) {
